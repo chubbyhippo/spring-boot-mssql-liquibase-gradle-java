@@ -1,7 +1,16 @@
 --changeset author:id1
-CREATE COLUMN MASTER KEY [MyCMK]
-    WITH
-    (
-    KEY_STORE_PROVIDER_NAME = N'MSSQL_JAVA_KEYSTORE',
-    KEY_PATH = N'AlwaysEncryptedKey'
-    );
+CREATE TABLE [dbo].[Patients]
+(
+    [PatientId] [int] IDENTITY (1,1),
+    [SSN]       [char](11) COLLATE Latin1_General_BIN2
+        ENCRYPTED WITH (ENCRYPTION_TYPE = DETERMINISTIC,
+    ALGORITHM = 'AEAD_AES_256_CBC_HMAC_SHA_256',
+    COLUMN_ENCRYPTION_KEY = MyCEK
+) NOT NULL,
+ [FirstName] [nvarchar](50) NULL,
+ [LastName] [nvarchar](50) NULL,
+ [BirthDate] [date]
+ ENCRYPTED WITH (ENCRYPTION_TYPE = RANDOMIZED,
+ ALGORITHM = 'AEAD_AES_256_CBC_HMAC_SHA_256',
+ COLUMN_ENCRYPTION_KEY = MyCEK) NOT NULL
+ PRIMARY KEY CLUSTERED ([PatientId] ASC) ON [PRIMARY]);

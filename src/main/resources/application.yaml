@@ -5,4 +5,4 @@ spring:
   datasource:
     url: jdbc:sqlserver://127.0.0.1:9876;encrypt=true;columnEncryptionSetting=Enabled;keyStoreAuthentication=JavaKeyStorePassword;keyStoreLocation=keystore.jks;keyStoreSecret=mypassword
   liquibase:
-    enabled: true
+    enabled: false
