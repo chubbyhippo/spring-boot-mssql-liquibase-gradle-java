@@ -6,6 +6,7 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.util.ResourceUtils;
 
@@ -13,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.util.HexFormat;
 
 @Configuration
+@Profile("create-key")
 public class Config {
 
     @Bean

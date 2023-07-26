@@ -1,8 +1,19 @@
 spring:
-  jpa:
-    hibernate:
-      ddl-auto: create
   datasource:
     url: jdbc:sqlserver://127.0.0.1:9876;encrypt=true;columnEncryptionSetting=Enabled;keyStoreAuthentication=JavaKeyStorePassword;keyStoreLocation=keystore.jks;keyStoreSecret=mypassword
+  profiles:
+    active: migrate-db
+---
+spring:
+  config:
+    activate:
+      on-profile: create-key
   liquibase:
     enabled: false
+---
+spring:
+  config:
+    activate:
+      on-profile: migrate-db
+  liquibase:
+    enabled: true
