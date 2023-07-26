@@ -1,16 +1,9 @@
 --changeset author:id1
-CREATE TABLE [dbo].[Patients]
+CREATE TABLE [dbo].[book]
 (
-    [PatientId] [int] IDENTITY (1,1),
-    [SSN]       [char](11) COLLATE Latin1_General_BIN2
-        ENCRYPTED WITH (ENCRYPTION_TYPE = DETERMINISTIC,
+    [id]    [int] IDENTITY (1,1),
+    [title] [nvarchar]
+        ENCRYPTED WITH (ENCRYPTION_TYPE = RANDOMIZED,
     ALGORITHM = 'AEAD_AES_256_CBC_HMAC_SHA_256',
     COLUMN_ENCRYPTION_KEY = MyCEK
-) NOT NULL,
- [FirstName] [nvarchar](50) NULL,
- [LastName] [nvarchar](50) NULL,
- [BirthDate] [date]
- ENCRYPTED WITH (ENCRYPTION_TYPE = RANDOMIZED,
- ALGORITHM = 'AEAD_AES_256_CBC_HMAC_SHA_256',
- COLUMN_ENCRYPTION_KEY = MyCEK) NOT NULL
- PRIMARY KEY CLUSTERED ([PatientId] ASC) ON [PRIMARY]);
+) NOT NULL);

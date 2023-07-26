@@ -1,8 +1,12 @@
 spring:
   datasource:
-    url: jdbc:sqlserver://127.0.0.1:9876;encrypt=true;columnEncryptionSetting=Enabled;keyStoreAuthentication=JavaKeyStorePassword;keyStoreLocation=keystore.jks;keyStoreSecret=mypassword
+    url: jdbc:sqlserver://127.0.0.1:9876;encrypt=true;columnEncryptionSetting=Enabled;keyStoreAuthentication=JavaKeyStorePassword;keyStoreLocation=C:\play\spring-boot-mssql-liquibase-gradle-java\src\main\resources\keystore.jks;keyStoreSecret=mypassword
   profiles:
     active: migrate-db
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServerDialect
 ---
 spring:
   config:
